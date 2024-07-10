@@ -10,6 +10,14 @@ struct contactoEmail {
     string nacionalidad;
 };
 
+// Función para extraer el dominio de un email
+string obtenerDominio(const string& email) {
+    size_t pos = email.find('@');
+    if (pos != string::npos) {
+        return email.substr(pos + 1);
+    }
+    return "";
+}
 
 // Función para eliminar un contacto
 void eliminarProducto(contactoEmail arr[], int &n, int indice) {
@@ -18,10 +26,21 @@ void eliminarProducto(contactoEmail arr[], int &n, int indice) {
             arr[i] = arr[i + 1];
         }
         n--;
-        cout << endl;
-        cout << "CONTACTO " << indice + 1<< " ELIMINADO CON EXITO!!" << endl;
     } else {
-        cout << "Indice no valido" << endl;
+        cout << "Indice no válido" << endl;
+    }
+}
+
+// Función para ordenar contactos por dominio de email usando burbuja
+void ordenarPorDominio(contactoEmail arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (obtenerDominio(arr[j].email) > obtenerDominio(arr[j + 1].email)) {
+                contactoEmail temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
     }
 }
 
@@ -106,7 +125,22 @@ int main() {
                 break;
 
             case 'd':
-            	
+            	if (n > 0) {
+                    ordenarPorDominio(nuevocontacto, n);
+                    cout << "LISTADO DE CONTACTOS ORDENADO POR DOMINIO DE CORREO:" << endl << endl;
+                    for (int i = 0; i < n; i++) {
+                        cout << i + 1 << ". Contacto." << endl;
+                        cout << "Nombre: " << nuevocontacto[i].nombrecompleto << endl;
+                        cout << "Sexo: " << nuevocontacto[i].sexo << endl;
+                        cout << "Edad: " << nuevocontacto[i].edad << endl;
+                        cout << "Telefono: " << nuevocontacto[i].telefono << endl;
+                        cout << "Email: " << nuevocontacto[i].email << endl;
+                        cout << "Nacionalidad: " << nuevocontacto[i].nacionalidad << endl;
+                        cout << "Dominio: " << obtenerDominio(nuevocontacto[i].email) << endl << endl;
+                    }
+                } else {
+                    cout << "No hay contactos registrados." << endl;
+                }
                 break;
 
             case 'e':

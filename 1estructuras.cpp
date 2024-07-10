@@ -11,6 +11,21 @@ struct contactoEmail {
 };
 
 
+// Función para eliminar un contacto
+void eliminarProducto(contactoEmail arr[], int &n, int indice) {
+    if (indice >= 0 && indice < n) {
+        for (int i = indice; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        n--;
+        cout << endl;
+        cout << "CONTACTO " << indice + 1<< " ELIMINADO CON EXITO!!" << endl;
+    } else {
+        cout << "Indice no valido" << endl;
+    }
+}
+
+
 int main() {
     const int max = 100;
     contactoEmail nuevocontacto[max];
@@ -53,7 +68,24 @@ int main() {
                 break;
 
             case 'b':
-
+                if (n > 0) {
+                    cout << "INDIQUE CUAL QUIERE ELIMINAR..." << endl << endl;
+                    for (int i = 0; i < n; i++) {
+                        cout << i + 1 << ". Contacto." << endl;
+                        cout << "Nombre: " << nuevocontacto[i].nombrecompleto << endl;
+                        cout << "Sexo: " << nuevocontacto[i].sexo << endl;
+                        cout << "Edad: " << nuevocontacto[i].edad << endl;
+                        cout << "Telefono: " << nuevocontacto[i].telefono << endl;
+                        cout << "Email: " << nuevocontacto[i].email << endl;
+                        cout << "Nacionalidad: " << nuevocontacto[i].nacionalidad << endl << endl;
+                    }
+                    cout << "Ingrese el numero del contacto a eliminar: ";
+                    int indice;
+                    cin >> indice;
+                    eliminarProducto(nuevocontacto, n, indice - 1);
+                } else {
+                    cout << "No hay contactos para eliminar." << endl;
+                }
                 break;
 
             case 'c':

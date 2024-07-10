@@ -144,9 +144,11 @@ int main() {
                 break;
 
             case 'e':
+            	cout << "Saliendo del programa." << endl;
                 break;
 
             default:
+            	cout << "Opción no válida. Intente de nuevo." << endl;
                 break;
         }
         cout << endl;

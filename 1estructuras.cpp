@@ -11,7 +11,6 @@ struct contactoEmail {
 };
 
 
-
 int main() {
     const int max = 100;
     contactoEmail nuevocontacto[max];
@@ -32,7 +31,25 @@ int main() {
 		cout << "--------------------------------------" << endl;
         switch (opcion) {
             case 'a':
-
+                if (n < max) {
+                    cout << "AGREGANDO CONTACTO..." << endl << endl;
+                    cout << "Nombre: ";
+                    if (n >= 0) cin.ignore();
+                    getline(cin, nuevocontacto[n].nombrecompleto);
+                    cout << "Sexo: ";
+                    cin >> nuevocontacto[n].sexo;
+                    cout << "Edad: ";
+                    cin >> nuevocontacto[n].edad;
+                    cout << "Telefono: ";
+                    cin >> nuevocontacto[n].telefono;
+                    cout << "Email: ";
+                    cin >> nuevocontacto[n].email;
+                    cout << "Nacionalidad: ";
+                    cin >> nuevocontacto[n].nacionalidad;
+                    n++;
+                } else {
+                    cout << "No se pueden agregar mas contactos." << endl;
+                }
                 break;
 
             case 'b':
@@ -44,7 +61,7 @@ int main() {
                 break;
 
             case 'd':
-
+            	
                 break;
 
             case 'e':
